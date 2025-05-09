@@ -1,27 +1,40 @@
-import { useEffect, useState } from "react"
-import { initTextAlive, loadSong } from "@/lib/textAlive"
-import { SongConfig } from "@/types/song"
+import { useState, useEffect, useRef, useMemo } from "react"
+import { Player } from "textalive-app-api"
 
-export function useTextAlive(songConfig: SongConfig) {
-  const [playerReady, setPlayerReady] = useState(false)
-  const [player, setPlayer] = useState<any>(null)
-  
+export const useTextAlive = () => {
+  const [player, setPlayer] = useState(null)
+  const [app, setApp] = useState(null)
+  const [phrase, setPhrase] = useState(null)
+  const [mediaElement, setMediaElement] = useState(null)
+  const mediaElementRef = useRef(null)
+
   useEffect(() => {
-    initTextAlive((playerInstance) => {
-      setPlayer(playerInstance)
-      
-      const loadSongAsync = async () => {
-        try {
-          await loadSong(songConfig)
-          setPlayerReady(true)
-        } catch (error) {
-          console.error("Failed to load song", error)
-        }
-      }
-      
-      loadSongAsync()
+    const player = new Player({
+      app: {
+        token: process.env.NEXT_PUBLIC_TEXTALIVE_API_KEY || "",
+      },
+      mediaElement: mediaElementRef.current!,
     })
-  }, [songConfig.songUrl, JSON.stringify(songConfig.video)])
+  })
 
-  return { playerReady, player }
+  const playerListener = {
+    onAppReady: () => {
+      setApp(app)
+    },
+    onAppParamaterUpdate: (name: string, value: string) => {
+      console.log(`App parameter updated: ${name} = ${value}`)
+    },
+    onVideoReady: () => {
+        let phrase = player?.video?.firstPhrase
+
+        while (phrase && phrase.next) {
+          phrase.animate = (now, unit) => {
+            if(unit.startTime <= now && unit.endTime> now) {
+              setPhrase(unit.text)
+            }
+          }
+          phrase = phrase.next
+        }
+    }
+  }
 }
