@@ -1,53 +1,17 @@
-"use client"
-
-import { createContext, useContext, useEffect, useState, useRef } from "react"
-import { IWord, IPhrase, Player, PlayerListener } from "textalive-app-api"
-
+import { Player, PlayerListener, IPhrase, IWord } from "textalive-app-api"
 import { SongConfig } from "@/types/song"
 
+let player: Player | null = null
+let phrase: IPhrase | null = null
 
-export const TextAliveProvider = ({
-	children,
-}: {
-	children: React.ReactNode
-}) => {
-	const [player, setPlayer] = useState<Player | null>(null)
-	const mediaElementRef = useRef<HTMLVideoElement>(null)
-	const [phrase, setPhrase] = useState<IPhrase | null>(null)
+let mediaElementRef: React.RefObject<HTMLVideoElement> | null = null
 
-	let delay = 100
+export const initTextAlive = (config: SongConfig) => {
+  if (player) {
+    return
+  }
 
-	useEffect(() => {
-		const player = new Player({
-			app: {
-				token: process.env.NEXT_PUBLIC_TEXTALIVE_API_KEY || "",
-			},
-			mediaElement: mediaElementRef.current!,
-		})
-	})
-
-	const playerListener: PlayerListener = {
-		onTimerReady: () => {
-			let phrase = player?.video?.firstPhrase
-
-			while (phrase) {
-				phrase.animate = (now, unit) => {
-					if (
-						unit.startTime - delay <= now &&
-						unit.endTime - delay > now
-					) {
-						setPhrase(unit as IPhrase)
-					}
-				}
-
-				if (phrase.next === null) break
-
-				phrase = phrase.next
-			}
-
-			setPlayer(player)
-		},
-	}
-
+  player = new Player()
+  player.load(config.songUrl)
   
 }
