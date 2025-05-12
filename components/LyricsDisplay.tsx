@@ -32,7 +32,12 @@ export const LyricsDisplay: React.FC<LyricsDisplayProps> = ({ player }) => {
     })
     
     // 楽曲の再生開始
-    player.requestPlay()
+    const playPromise = player.requestPlay()
+    if (playPromise && typeof playPromise.catch === 'function') {
+      playPromise.catch(error => {
+        if (error.name !== 'AbortError') console.error(error)
+      })
+    }
     
     return () => {
       player.removeListener({
