@@ -44,10 +44,10 @@ export const LyricsDisplay: React.FC<LyricsDisplayProps> = ({ player, autoplay =
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <div className="relative w-full h-32 bg-gray-100 flex items-center justify-center overflow-hidden">
-        <div className="text-4xl font-bold">
+        <div className="text-4xl font-bold text-black">
           {currentWords.length > 0
             ? currentWords.map(word => word.text).join(" ")
-            : "歌詞を待っています..."}
+            : ""}
         </div>
       </div>
       <div className="mt-8 flex gap-4">
