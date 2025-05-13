@@ -7,43 +7,33 @@ import { SongConfig } from '@/types/song'
 export const useTextAlive = (songConfig: SongConfig | null) => {
   const [player, setPlayer] = useState<Player | null>(null)
   const [playerReady, setPlayerReady] = useState(false)
-  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const containerRef = useRef<HTMLElement | null>(null)
 
   // 隠し video 要素を一度だけ生成
   useEffect(() => {
-    const video = document.createElement('video')
-    video.style.display = 'none'
-    // play の promise rejection をキャッチして AbortError を無視
-    const origPlay = video.play.bind(video)
-    video.play = () => {
-      const playPromise = origPlay()
-      playPromise.catch(error => {
-        if (error.name !== 'AbortError') {
-          console.error(error)
-        }
-      })
-      return playPromise
-    }
-    document.body.appendChild(video)
-    videoRef.current = video
+    // テキストアライブが内部で埋め込むメディア要素のコンテナ
+    const container = document.createElement('div')
+    container.style.display = 'none'
+    document.body.appendChild(container)
+    containerRef.current = container
 
     return () => {
-      if (videoRef.current) {
-        document.body.removeChild(videoRef.current)
-        videoRef.current = null
+      if (containerRef.current) {
+        document.body.removeChild(containerRef.current)
+        containerRef.current = null
       }
     }
   }, [])
 
   useEffect(() => {
-    if (!songConfig || !videoRef.current) return
+    if (!songConfig || !containerRef.current) return
 
     setPlayerReady(false)
 
-    const playerInstance = initTextAlive(videoRef.current)
+    const playerInstance = initTextAlive(containerRef.current)
     setPlayer(playerInstance)
     const listener = createTextAliveListener(
-      () => {}, // フレーズ更新は不要
+      () => {}, // フレーズ更新不要
       (_p: Player) => {
         setPlayerReady(true)
       },

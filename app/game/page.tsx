@@ -20,7 +20,7 @@ export default function GamePage() {
 
   return (
     <div className="w-full h-full">
-      <LyricsDisplay player={player} />
+      <LyricsDisplay player={player!} />
     </div>
   )
 }
