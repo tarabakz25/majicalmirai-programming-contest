@@ -25,7 +25,7 @@ export const SelectSongs: React.FC<SelectSongsProps> = ({ songs, onSelect }) => 
         {songs.map((song) => (
           <option key={song.songUrl} value={song.songUrl}>
             {song.songUrl.split('/').pop()?.split('?')[0] || song.songUrl}
-          </option>
+          </option> 
         ))}
       </select>
       <button 
