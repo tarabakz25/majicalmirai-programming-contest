@@ -5,6 +5,25 @@
 - 締切: 2025-07-08 12:00 JST
 - **現在スプリント: S0**
 
+## 緊急対応項目（リモートからの統合）
+### 即座に対応が必要なタスク
+- [ ] READMEの整備
+- [ ] lib/textalive.ts の実装
+- [ ] Components/GameCanvas と Note.tsx の実装
+- [ ] 歌詞表示(LyricsDisplay)の演出と再生制御
+- [ ] `/play/[songId]` ルートの作成
+- [ ] スコア計算および入力判定ロジック
+- [ ] 環境変数(NEXT_PUBLIC_TEXTALIVE_API_KEY)の設定方法をREADMEに追記
+- [ ] テスト・Lint設定の追加
+
+### 推奨ブランチ戦略
+- `feature/textalive-hook`
+- `feature/game-canvas`
+- `feature/play-route`
+- `docs/readme`
+
+---
+
 ## Sprint S0: 基盤構築 (06-04 – 06-06)
 **目標**: Next.js 雛形 & 静的化成功、TextAlive サンプル再生
 
