@@ -1,0 +1,130 @@
+{
+  "songs": [
+    {
+      "id": "song1",
+      "title": "楽曲1",
+      "artist": "初音ミク",
+      "url": "https://piapro.jp/t/ULcJ/20250205120202",
+      "video": {
+        "beatId": 4694275,
+        "chordId": 2830730,
+        "repetitiveSegmentId": 2946478,
+        "lyricId": 67810,
+        "lyricDiffId": 20654
+      },
+      "bpm": 120,
+      "duration": 180000,
+      "difficulty": {
+        "easy": 1,
+        "normal": 3,
+        "hard": 5
+      }
+    },
+    {
+      "id": "song2", 
+      "title": "楽曲2",
+      "artist": "初音ミク",
+      "url": "https://piapro.jp/t/SuQO/20250127235813",
+      "video": {
+        "beatId": 4694276,
+        "chordId": 2830731,
+        "repetitiveSegmentId": 2946479,
+        "lyricId": 67811,
+        "lyricDiffId": 20655
+      },
+      "bpm": 128,
+      "duration": 200000,
+      "difficulty": {
+        "easy": 2,
+        "normal": 4,
+        "hard": 6
+      }
+    },
+    {
+      "id": "song3",
+      "title": "楽曲3", 
+      "artist": "初音ミク",
+      "url": "https://piapro.jp/t/Ppc9/20241224135843",
+      "video": {
+        "beatId": 4694277,
+        "chordId": 2830732,
+        "repetitiveSegmentId": 2946480,
+        "lyricId": 67812,
+        "lyricDiffId": 20656
+      },
+      "bpm": 140,
+      "duration": 160000,
+      "difficulty": {
+        "easy": 1,
+        "normal": 3,
+        "hard": 7
+      }
+    },
+    {
+      "id": "song4",
+      "title": "楽曲4",
+      "artist": "初音ミク", 
+      "url": "https://piapro.jp/t/oTaJ/20250204234235",
+      "video": {
+        "beatId": 4694278,
+        "chordId": 2830733,
+        "repetitiveSegmentId": 2946481,
+        "lyricId": 67813,
+        "lyricDiffId": 20657
+      },
+      "bpm": 110,
+      "duration": 220000,
+      "difficulty": {
+        "easy": 2,
+        "normal": 4,
+        "hard": 6
+      }
+    },
+    {
+      "id": "song5",
+      "title": "楽曲5",
+      "artist": "初音ミク",
+      "url": "https://piapro.jp/t/GCgy/20250202202635", 
+      "video": {
+        "beatId": 4694279,
+        "chordId": 2830734,
+        "repetitiveSegmentId": 2946482,
+        "lyricId": 67814,
+        "lyricDiffId": 20658
+      },
+      "bpm": 135,
+      "duration": 190000,
+      "difficulty": {
+        "easy": 1,
+        "normal": 3,
+        "hard": 5
+      }
+    },
+    {
+      "id": "song6",
+      "title": "楽曲6",
+      "artist": "初音ミク",
+      "url": "https://piapro.jp/t/CyPO/20250128183915",
+      "video": {
+        "beatId": 4694280,
+        "chordId": 2830735,
+        "repetitiveSegmentId": 2946483,
+        "lyricId": 67815,
+        "lyricDiffId": 20659
+      },
+      "bpm": 125,
+      "duration": 210000,
+      "difficulty": {
+        "easy": 2,
+        "normal": 4,
+        "hard": 6
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-01-15",
+    "totalSongs": 6,
+    "description": "マジカル未来プログラミングコンテスト2025 対象楽曲"
+  }
+} 
